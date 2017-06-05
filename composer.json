@@ -1,0 +1,61 @@
+{
+	"name"       : "keesiemeijer/wp-parser-validate",
+	"description": "Validate inline documentation for WordPress code standards",
+	"keywords"   : ["wordpress"],
+	"type"       : "wp-cli-package",
+	"homepage"   : "https://github.com/keesiemeijer/wp-parser-validate",
+	"license"    : "GPL-2.0+",
+	"authors"    : [
+		{
+			"name"    : "keesiemeijer",
+			"homepage": "https://github.com/keesiemeijer",
+			"role"    : "Developer"
+		}
+	],
+	"support"    : {
+		"issues": "https://github.com/keesiemeijer/wp-parser-validate/issues"
+	},
+	"require"    : {
+		"composer/installers" : "~1.0"
+	},
+	"require-dev": {
+		"coenjacobs/mozart": "^0.2.0",
+		"wpupdatephp/wp-update-php": "^1.1",
+		"donatj/simplecalendar": "^0.6.1",
+		"fisharebest/ext-calendar": "dev-master"
+	},
+	"repositories": [
+		{
+			"type": "vcs",
+			"url":  "https://github.com/fisharebest/ext-calendar.git"
+		}
+	],
+	"autoload"   : {
+		"classmap": ["src"],
+		"files": ["src/functions.php"],
+		"exclude-from-classmap": ["/vendor/", "/src/Dependencies/classes/wpupdatephp/"]
+	},
+	"extra": {
+		"mozart": {
+			"dep_namespace": "keesiemeijer\\Post_Type_Calendar\\Dependencies\\",
+			"dep_directory": "/src/Dependencies/",
+			"classmap_directory": "/src/dependencies/classes/",
+			"classmap_prefix": "PTC_",
+			"packages": [
+				"donatj/simplecalendar",
+				"wpupdatephp/wp-update-php",
+				"fisharebest/ext-calendar"
+			]
+		}
+	},
+	"scripts": {
+		"post-install-cmd": [
+			"if [ -f ./vendor/bin/mozart ]; then ./vendor/bin/mozart compose; fi",
+			"if [ -f ./vendor/bin/mozart ]; then composer update --no-dev; fi"
+		],
+		"post-update-cmd": [
+			"if [ -f ./vendor/bin/mozart ]; then ./vendor/bin/mozart compose; fi",
+			"if [ -f ./vendor/bin/mozart ]; then composer update --no-dev; fi"
+		]
+	}
+}
