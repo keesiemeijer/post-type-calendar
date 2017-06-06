@@ -8,6 +8,8 @@ A WordPress plugin to display a calendar with post titles.
 
 This plugin uses the [SimpleCalendar](https://github.com/donatj/SimpleCalendar) by donatj to display the calendar.
 
+See an [example calendar](https://github.com/keesiemeijer/post-type-calendar/wiki) in the Wiki.
+
 ## Installation ##
 
 Clone or download this repository inside the WordPress `plugins` directory
