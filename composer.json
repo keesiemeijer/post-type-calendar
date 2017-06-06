@@ -1,9 +1,9 @@
 {
 	"name"       : "keesiemeijer/wp-parser-validate",
-	"description": "Validate inline documentation for WordPress code standards",
+	"description": "Display a calendar with WordPress post titles",
 	"keywords"   : ["wordpress"],
-	"type"       : "wp-cli-package",
-	"homepage"   : "https://github.com/keesiemeijer/wp-parser-validate",
+	"type"       : "wordpress-plugin",
+	"homepage"   : "https://github.com/keesiemeijer/post-type-calendar",
 	"license"    : "GPL-2.0+",
 	"authors"    : [
 		{
@@ -13,7 +13,7 @@
 		}
 	],
 	"support"    : {
-		"issues": "https://github.com/keesiemeijer/wp-parser-validate/issues"
+		"issues": "https://github.com/keesiemeijer/post-type-calendar/issues"
 	},
 	"require"    : {
 		"composer/installers" : "~1.0"

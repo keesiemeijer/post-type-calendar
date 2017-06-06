@@ -3,12 +3,10 @@
 Plugin Name: Post Type Calendar
 Version: 1.0.0
 Plugin URI:
-Description: Display a calendar for your posts.
+Description: Display a calendar with WordPress post titles.
 Author: keesiemijer
 Author URI:
-License: GPL v2
-Text Domain: post-type-calendar
-Domain Path: /lang
+License: GPL v2+
 */
 
 
