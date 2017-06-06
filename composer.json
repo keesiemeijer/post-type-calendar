@@ -1,5 +1,5 @@
 {
-	"name"       : "keesiemeijer/wp-parser-validate",
+	"name"       : "keesiemeijer/post-type-calendar",
 	"description": "Display a calendar with WordPress post titles",
 	"keywords"   : ["wordpress"],
 	"type"       : "wordpress-plugin",
