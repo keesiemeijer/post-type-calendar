@@ -19,14 +19,14 @@ function get_current_calendar_date() {
 
 	$ts = current_time( 'timestamp' );
 
-	// Let's figure out when we are
+	// Let's figure out when we are.
 	if ( ! empty( $monthnum ) && ! empty( $year ) ) {
 		$thismonth = zeroise( intval( $monthnum ), 2 );
 		$thisyear = (int) $year;
 	} elseif ( ! empty( $w ) ) {
-		// We need to get the month from MySQL
+		// We need to get the month from MySQL.
 		$thisyear = (int) substr( $m, 0, 4 );
-		//it seems MySQL's weeks disagree with PHP's
+		// It seems MySQL's weeks disagree with PHP's.
 		$d = ( ( $w - 1 ) * 7 ) + 6;
 		$thismonth = $wpdb->get_var( "SELECT DATE_FORMAT((DATE_ADD('{$thisyear}0101', INTERVAL $d DAY) ), '%m')" );
 	} elseif ( ! empty( $m ) ) {
@@ -49,10 +49,10 @@ function get_current_calendar_date() {
  *
  * @since 1.0.0
  *
- * @param int    $year   Year
- * @param int    $month  Month
+ * @param int    $year   Year.
+ * @param int    $month  Month.
  * @param int    $day    Day. Default 0.
- * @param string $format PHP date format
+ * @param string $format PHP date format.
  * @return array|false Array with date attributes or false if no date was found.
  */
 function get_date_attributes( $year, $month, $day = 0, $format = '' ) {
@@ -89,13 +89,13 @@ function get_date_attributes( $year, $month, $day = 0, $format = '' ) {
 }
 
 /**
- * [get_date_from_post description]
+ * Returns date attributes from a post.
  *
  * @since 1.0.0
  *
- * @param [type] $post   [description]
- * @param string $format [description]
- * @return [type]         [description]
+ * @param object $post   Post object.
+ * @param string $format PHP date format.
+ * @return array         Array with date attributes.
  */
 function get_date_from_post( $post, $format = '' ) {
 	if ( ! isset( $post->post_date ) && $post->post_date ) {
@@ -134,23 +134,23 @@ function get_calendar( $posts, $args = '' ) {
 
 	$defaults = array(
 		'start_of_week' => (int) get_option( 'start_of_week' ),
-		'linkto'        => 'date_archive', // 'date_archive', 'post', or empty string
+		'linkto'        => 'date_archive', // 'date_archive', 'post', or empty string.
 		'day_names'     => '',
 	);
 
 	$args  = wp_parse_args( $args, $defaults );
 	$posts = array_values( $posts );
 
-	// Get the date from the first post as year and month for the calendar
+	// Get the date from the first post as year and month for the calendar.
 	$date = isset( $posts[0] ) ? get_date_from_post( $posts[0] ) : '';
 
 	if ( ! $date ) {
 		return '';
 	}
 
-	$Calendar = new Calendar( $posts[0]->post_date );
-	$Calendar->setStartOfWeek( $args['start_of_week'] );
-	$Calendar->setWeekdayNames( $args['day_names'] );
+	$calendar = new Calendar( $posts[0]->post_date );
+	$calendar->setStartOfWeek( $args['start_of_week'] );
+	$calendar->setWeekdayNames( $args['day_names'] );
 
 	foreach ( $posts as $key => $post ) {
 		$url       = get_permalink( $post );
@@ -191,8 +191,8 @@ function get_calendar( $posts, $args = '' ) {
 		 */
 		$html = apply_filters( 'post_type_calendar_daily_html', $html, $post, $args );
 
-		$Calendar->addDailyHtml( $html, $post->post_date );
+		$calendar->addDailyHtml( $html, $post->post_date );
 	}
 
-	$Calendar->show();
+	$calendar->show();
 }
