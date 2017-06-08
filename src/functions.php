@@ -205,5 +205,5 @@ function get_calendar( $posts, $args = '' ) {
 		$calendar->addDailyHtml( $html, $post->post_date );
 	}
 
-	$calendar->show();
+	return $calendar->show( false );
 }
