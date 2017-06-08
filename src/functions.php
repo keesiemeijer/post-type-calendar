@@ -121,9 +121,9 @@ function get_date_from_post( $post, $format = '' ) {
  *     Optional. An array of arguments.
  *
  *     @type int    $start_of_week Day to start on, 0-6 where 0 is Sunday.
- *     @type string $linkto        Link to date archives or posts.
- *                                 Accepts: 'date_archives', 'posts' or empty string.
- *                                 Default 'date_archives'. Use empty string to not link.
+ *     @type string $linkto        Link to date posts or date archives.
+ *                                 Accepts: 'post', 'date_archive' or empty string.
+ *                                 Default 'post'. Use empty string to not link.
  *     @type string $day_names     Type of weekday names.
  *                                 Accepts: 'abbreviation', 'weekday' or 'initial'.
  *                                 Default 'abbreviation'.
@@ -134,7 +134,7 @@ function get_calendar( $posts, $args = '' ) {
 
 	$defaults = array(
 		'start_of_week' => (int) get_option( 'start_of_week' ),
-		'linkto'        => 'date_archive', // 'date_archive', 'post', or empty string.
+		'linkto'        => 'post',
 		'day_names'     => '',
 	);
 
