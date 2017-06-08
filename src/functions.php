@@ -153,9 +153,20 @@ function get_calendar( $posts, $args = '' ) {
 	$calendar->setWeekdayNames( $args['day_names'] );
 
 	foreach ( $posts as $key => $post ) {
+		$html      = '';
 		$url       = get_permalink( $post );
 		$title     = get_the_title( $post );
-		$html      = '';
+
+		/**
+		 * Filter the post title used in the calendar.
+		 *
+		 * @since  1.0.0
+		 * 
+		 * @param string $title Post title.
+		 * @param object $post  Post.
+		 * @param array  $args  Calendar arguments.
+		 */
+		$title = apply_filters( 'post_type_calendar_post_title', $title, $post, $args );
 
 		$post_date = get_date_from_post( $post );
 		if ( ! $post_date ) {
