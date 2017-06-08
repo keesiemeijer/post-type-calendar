@@ -38,6 +38,7 @@ module.exports = function( grunt ) {
 					'!**/Gruntfile.js',
 					'!**/package.json',
 					'!**/phpunit.xml',
+					'!**/phpunit.xml.dist',
 					'!**/README.md',
 					'!**/readme.md',
 					'!**/CHANGELOG.md',
