@@ -30,7 +30,7 @@ This plugin requires PHP 5.6 or greater.
 All (third-party) packages are included in the `src/Dependencies` directory by [Mozart](https://github.com/coenjacobs/mozart). Mozart installs the packages there automatically after using `composer update` or `composer install`.
 
 ## Creating a new build ##
-To compile the plugin (without all the development files) use the following commands:
+To compile the plugin (without all the development files) go to the the `post-type-calendar` directory and use the following commands.
 ```bash
 # Install Grunt tasks
 npm install
