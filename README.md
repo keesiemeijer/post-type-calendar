@@ -1,4 +1,4 @@
-# Post Type Calendar
+# Post Type Calendar [![Build Status](https://travis-ci.org/keesiemeijer/post-type-calendar.svg?branch=master)](http://travis-ci.org/keesiemeijer/post-type-calendar) #
 
 Version:           1.0.0  
 Requires at least: 4.6  
