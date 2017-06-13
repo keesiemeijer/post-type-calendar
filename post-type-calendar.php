@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: Post Type Calendar
-Version: 1.0.0
+Version: 1.1.0
 Plugin URI:
 Description: Display a calendar with WordPress post titles.
 Author: keesiemijer

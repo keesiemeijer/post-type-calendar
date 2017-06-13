@@ -7,4 +7,5 @@ $baseDir = dirname($vendorDir);
 
 return array(
     '6f10935b3b16f805d9d8cc84ba9a5288' => $baseDir . '/src/functions.php',
+    '90837a3666a8a08dc2d7f53db5ede293' => $baseDir . '/src/shortcode.php',
 );
