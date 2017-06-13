@@ -12,7 +12,12 @@ if ( $composer && $shim ) {
 
 	require POST_TYPE_CALENDAR_PLUGIN_DIR . 'vendor/autoload.php';
 	require POST_TYPE_CALENDAR_PLUGIN_DIR . 'src/Dependencies/Fisharebest/ExtCalendar/shims.php';
+	// Add the calendar stylesheet.
 	add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\\enqueue__scripts' );
+
+	// Add the calendar shortcode.
+	add_shortcode( 'pt_calendar', __NAMESPACE__ . '\\add_calendar_shortcode' );
+
 }
 
 /**
