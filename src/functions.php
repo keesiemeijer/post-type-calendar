@@ -207,3 +207,20 @@ function get_calendar( $posts, $args = '' ) {
 
 	return $calendar->show( false );
 }
+
+/**
+ * Sanitizes comma separetad values.
+ * Returns an array.
+ *
+ * @since 1.1.0
+ * @param string|array $value Comma seperated value or array with values.
+ * @return array       Array with unique array values
+ */
+function get_comma_separated_values( $value ) {
+
+	if ( ! is_array( $value ) ) {
+		$value = explode( ',', (string) $value );
+	}
+
+	return array_values( array_filter( array_unique( array_map( 'trim', $value ) ) ) );
+}
