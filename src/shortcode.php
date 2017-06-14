@@ -28,6 +28,7 @@ function add_calendar_shortcode( $args ) {
 	}
 
 	$args['query_args']['post_type'] = $args['post_type'];
+	$args['query_args']['posts_per_page'] = -1;
 	$calendar_posts = get_posts( $args['query_args'] );
 	if ( ! $calendar_posts ) {
 		return '';
@@ -68,8 +69,8 @@ function validate_attributes( $args ) {
 			$date = get_date_attributes( $args['date'][0], $args['date'][1] );
 			if ( $date ) {
 				$args['query_args'] = array(
-					'year'  => $date['year'],
-					'month' => $date['month'],
+					'year'     => $date['year'],
+					'monthnum' => (int) $date['month'],
 				);
 			}
 		}
