@@ -16,9 +16,15 @@ class Post_Type_Calendar_UnitTestCase extends \WP_UnitTestCase {
 	 * @param integer $posts_per_page How may posts to create.
 	 * @return array                  Array with posts.
 	 */
-	function create_posts( $post_type = 'post', $posts_per_page = 5 ) {
+	function create_posts( $post_type = 'post', $posts_per_page = 5, $delete = true ) {
 
-		_delete_all_posts();
+		if ( $delete ) {
+			_delete_all_posts();
+		}
+
+		if ( ! post_type_exists( $post_type ) ) {
+			$this->register_post_type( $post_type );
+		}
 
 		if ( ! defined( 'MONTH_IN_SECONDS' ) ) {
 			define( 'MONTH_IN_SECONDS',  30 * DAY_IN_SECONDS    );
@@ -46,5 +52,12 @@ class Post_Type_Calendar_UnitTestCase extends \WP_UnitTestCase {
 			) );
 
 		return $posts;
+	}
+
+	function register_post_type( $post_type = 'cpt' ) {
+
+		$args = array( 'public' => true, 'has_archive' => true, 'label' => 'Custom Post Type' );
+
+		register_post_type( $post_type, $args );
 	}
 }
