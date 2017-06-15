@@ -4,11 +4,14 @@ Version:           1.1.0
 Requires at least: 4.6  
 Tested up to:      4.8  
 
-A WordPress plugin to display a calendar with post titles.
+A WordPress plugin to display a calendar with post titles from any post type.
+
+Use [the shortcode](https://github.com/keesiemeijer/post-type-calendar/wiki/Shortcode) `[pt_calendar]` or [functions](https://github.com/keesiemeijer/post-type-calendar/wiki/Functions) to display the calendar where you want.
 
 This plugin uses the [SimpleCalendar](https://github.com/donatj/SimpleCalendar) by donatj to display the calendar.
 
-See an [example calendar](https://github.com/keesiemeijer/post-type-calendar/wiki) in the Wiki.
+[documentation](https://github.com/keesiemeijer/post-type-calendar/wiki).
+[example calendar](https://github.com/keesiemeijer/post-type-calendar/wiki).
 
 ## Installation ##
 
