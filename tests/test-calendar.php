@@ -19,6 +19,7 @@ class Test_Calendar extends Post_Type_Calendar_UnitTestCase {
 		$posts     = $this->create_posts();
 		$permalink = get_permalink( $posts[0] );
 		$calendar  = get_calendar( $posts );
+		$this->assertTrue( ( 1 === substr_count( $calendar, '<a ' ) ) );
 		$this->assertContains( $permalink, $calendar );
 	}
 
@@ -30,6 +31,7 @@ class Test_Calendar extends Post_Type_Calendar_UnitTestCase {
 		$date      = get_date_from_post( $posts[0] );
 		$permalink = get_home_url() . "/?m={$date['year']}{$date['month']}{$date['day']}";
 		$calendar  = get_calendar( $posts, array( 'linkto' => 'date_archive' ) );
+		$this->assertTrue( ( 1 === substr_count( $calendar, '<a ' ) ) );
 		$this->assertContains( $permalink, $calendar );
 	}
 
@@ -42,6 +44,22 @@ class Test_Calendar extends Post_Type_Calendar_UnitTestCase {
 		$calendar  = get_calendar( $posts, array( 'linkto' => '' ) );
 		$this->assertContains( $posts[0]->post_title, $calendar );
 		$this->assertNotContains( '<a', $calendar );
+	}
+
+	/**
+	 * Test calendar linking to post types.
+	 */
+	function test_calendar_multiple_post_type_posts() {
+		_delete_all_posts();
+		$posts         = $this->create_posts( 'post', 5, false);
+		$posts_cpt     = $this->create_posts( 'cpt', 5, false );
+		$permalink     = get_permalink( $posts[0] );
+		$permalink_cpt = get_permalink( $posts_cpt[0] );
+		$posts         = array_merge($posts, $posts_cpt);
+		$calendar      = get_calendar( $posts );
+		$this->assertContains( $permalink, $calendar );
+		$this->assertContains( $permalink_cpt, $calendar );
+		$this->assertTrue( ( 2 === substr_count( $calendar, '<a ' ) ) );
 	}
 
 

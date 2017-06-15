@@ -27,7 +27,19 @@ class Test_Shortcode extends Post_Type_Calendar_UnitTestCase {
 		$posts     = $this->create_posts();
 		$permalink = get_permalink( $posts[0] );
 		$shortcode = do_shortcode( '[pt_calendar]' );
+		$this->assertTrue( ( 1 === substr_count( $shortcode, '<a ' ) ) );
 		$this->assertContains( $permalink, $shortcode );
+	}
+
+	/**
+	 * Test shortcode calendar without linking.
+	 */
+	function test_shortcode_calendar_linkto_none() {
+		$posts     = $this->create_posts();
+		$permalink = get_permalink( $posts[0] );
+		$shortcode = do_shortcode( '[pt_calendar linkto=""]' );
+		$this->assertNotContains( '<a ', $shortcode );
+		$this->assertContains( $posts[0]->post_title, $shortcode );	
 	}
 
 	/**
@@ -42,6 +54,7 @@ class Test_Shortcode extends Post_Type_Calendar_UnitTestCase {
 		$shortcode     = do_shortcode( '[pt_calendar post_type="cpt,post"]' );
 		$this->assertContains( $permalink, $shortcode );
 		$this->assertContains( $permalink_cpt, $shortcode );
+		$this->assertTrue( ( 2 === substr_count( $shortcode, '<a ' ) ) );
 	}
 
 	/**
@@ -52,6 +65,7 @@ class Test_Shortcode extends Post_Type_Calendar_UnitTestCase {
 		$date      = get_date_from_post( $posts[0] );
 		$permalink = get_home_url() . "/?m={$date['year']}{$date['month']}{$date['day']}";
 		$shortcode = do_shortcode( '[pt_calendar linkto="date_archive"]' );
+		$this->assertTrue( ( 1 === substr_count( $shortcode, '<a ' ) ) );
 		$this->assertContains( $permalink, $shortcode );
 	}
 
@@ -63,6 +77,7 @@ class Test_Shortcode extends Post_Type_Calendar_UnitTestCase {
 		$date      = get_date_from_post( $posts[4] );
 		$permalink = get_home_url() . "/?m={$date['year']}{$date['month']}{$date['day']}";
 		$shortcode = do_shortcode( "[pt_calendar date='{$date['year']}-{$date['month']}' linkto='date_archive' ]" );
+		$this->assertTrue( ( 1 === substr_count( $shortcode, '<a ' ) ) );
 		$this->assertContains( $permalink, $shortcode );
 	}
 
@@ -74,6 +89,7 @@ class Test_Shortcode extends Post_Type_Calendar_UnitTestCase {
 		$shortcode = do_shortcode( "[pt_calendar post_ids='{$posts[2]->ID},{$posts[3]->ID},{$posts[4]->ID}']" );
 		$this->assertTrue( ( 1 === substr_count( $shortcode, '?p=' ) ) );
 		$permalink = get_permalink( $posts[2] );
+		$this->assertTrue( ( 1 === substr_count( $shortcode, '<a ' ) ) );
 		$this->assertContains( $permalink, $shortcode );
 	}
 
@@ -99,6 +115,7 @@ class Test_Shortcode extends Post_Type_Calendar_UnitTestCase {
 		the_content();
 		$content = ob_get_clean();
 		$this->assertContains( $posts[1]->post_title, $content );
+		$this->assertTrue( ( 1 === substr_count( $content, '<a ' ) ) );
 	}
 
 	/**
