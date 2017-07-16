@@ -200,7 +200,7 @@ function get_calendar( $posts, $args = '' ) {
 		 * @param object $post Post.
 		 * @param array  $args Calendar arguments.
 		 */
-		$html = apply_filters( 'post_type_calendar_daily_html', $html, $post, $args );
+		$html = apply_filters( 'post_type_calendar_daily_html', $html, $post, $args, $title );
 
 		$calendar->addDailyHtml( $html, $post->post_date );
 	}
